@@ -1,0 +1,138 @@
+footer {
+  width: 100%;
+  background-color: #6d67e4;
+  padding: 0 40px;
+  padding-top: 180px;
+  color: #fff;
+  position: relative;
+  bottom: 0;
+  margin-top: 150px;
+  padding-bottom: 80px;
+}
+
+footer .get-footer {
+  position: absolute;
+  top: -50%;
+  left: 50%;
+  transform: translate(-50%, 30%);
+  border-radius: 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #6d67e4;
+  background-color: rgb(245, 245, 245);
+  padding: 80px 60px;
+  box-sizing: content-box;
+  width: 80%;
+}
+
+footer .get-footer h1:nth-child(2) {
+  color: #00a7ff;
+  line-height: 20px;
+}
+
+footer .get-footer a {
+  text-decoration: none;
+}
+
+footer .get-footer .button-footer {
+  background-color: #6d67e4;
+  color: #fff;
+  padding: 15px 30px;
+  border-radius: 20px;
+}
+
+footer .main-footer {
+  display: grid;
+  grid-template-columns: 2fr repeat(2, 1fr);
+}
+
+footer .main-footer .footer-brand {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+
+footer .main-footer .footer-brand .logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+footer .main-footer .footer-brand .logo img {
+  background-color: #fff;
+  padding: 10px;
+  border-radius: 8px;
+  width: 80px;
+}
+
+footer .main-footer .footer-brand .logo span {
+  font-size: 60px;
+  font-weight: 500;
+}
+
+footer .main-footer .footer-brand h4 {
+  font-size: 24px;
+  font-weight: 400;
+}
+
+footer .main-footer .footer-link h3 {
+  font-size: 20px;
+  color: #faf8ff;
+}
+
+footer .main-footer .footer-link .link {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+footer .main-footer .footer-link .link a {
+  color: #fff;
+  text-decoration: none;
+}
+
+footer .main-footer .footer-link .link a:hover {
+  text-decoration: underline;
+}
+
+footer .footer-brand .media-list {
+  display: flex;
+  gap: 20px;
+}
+
+footer .footer-brand .media-list i {
+  font-size: 30px;
+}
+
+@media screen and (max-width: 768px) {
+  footer {
+    padding: 0 20px;
+    padding-top: 100px;
+    padding-bottom: 130px;
+  }
+
+  footer .get-footer {
+    padding: 30px 20px;
+    transform: translate(-50%, 320%);
+    border-radius: 20px;
+  }
+
+  footer .get-footer h1 {
+    line-height: 20px;
+    font-size: 14px;
+  }
+
+  footer .main-footer {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    gap: 40px;
+  }
+
+  footer .get-footer .button-footer {
+    padding: 10px 15px;
+    font-size: 12px;
+  }
+}
