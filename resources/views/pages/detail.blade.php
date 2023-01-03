@@ -33,7 +33,7 @@
     <link rel="stylesheet" href="{{ asset('styles/footer.css') }}" />
   </head>
 
-  <body onscroll="onScroll()">
+  <body>
     <!-- Navbar -->
     <nav id="nav">
       <div class="nav-container">
@@ -225,7 +225,7 @@
           </div>
           <div class="dropdown">
             <hr />
-            <form action="" method="POST" class="order-detail">
+            <form action="{{ route("pemesanan", $tiket->id) }}" method="GET" class="order-detail">
               <div class="order-form">
                 <label for="order-date" class="order-date">
                   <i class="fa-solid fa-calendar-days"></i>
@@ -242,15 +242,15 @@
                   <div class="number">
                     <p>Jumlah Tamu</p>
                     <div class="input-number">
-                      <div class="btn btn-min">-</div>
+                      <div class="btn btn-min cursor-pointer" id="btn-min">-</div>
                       <input
                         type="number"
                         id="visit-number"
                         name="visit-number"
-                        value="1"
+                        value=1
                       />
-                      <span>1</span>
-                      <div class="btn btn-plus">+</div>
+                      <span id="span-visit">1</span>
+                      <div class="btn btn-plus cursor-pointer" id="btn-plus">+</div>
                     </div>
                   </div>
                 </label>
@@ -318,6 +318,39 @@
           navElement.classList.remove("onscroll");
         }
       }
+
+      const dateInput = document.querySelectorAll("#order-date")
+      const dateSelect = document.querySelectorAll("#date")
+
+      const btnMin = document.querySelectorAll("#btn-min")
+      const btnPlus = document.querySelectorAll("#btn-plus")
+      const visitNumber = document.querySelectorAll("#visit-number")
+      const spanVisit = document.querySelectorAll("#span-visit")
+      
+      for (let i = 0; i < dateInput.length; i++ ) {
+        dateInput[i].value = null;
+        dateInput[i].addEventListener("change", function() {
+          dateSelect[i].innerText = dateInput[i].value;
+        })
+      }
+
+      for (let i = 0; i < btnMin.length; i++ ) {
+        visitNumber[i].value = 1;
+
+        spanVisit[i].innerText = visitNumber[i].value;
+        btnMin[i].addEventListener("click", function() {
+          if(visitNumber[i].value > 1) {
+              visitNumber[i].value--;
+              spanVisit[i].innerText = visitNumber[i].value;
+          }
+        })
+
+        btnPlus[i].addEventListener("click", function() {
+              visitNumber[i].value++;
+              spanVisit[i].innerText = visitNumber[i].value;
+        })
+      }
+      
     </script>
   </body>
 </html>

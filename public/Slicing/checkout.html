@@ -23,6 +23,7 @@
     />
 
     <!-- CSS -->
+    <link rel="stylesheet" href="styles/global-style.css" />
     <link rel="stylesheet" href="styles/navbar.css" />
     <link rel="stylesheet" href="styles/checkout.css" />
     <link rel="stylesheet" href="styles/footer.css" />
@@ -30,26 +31,28 @@
 
   <body>
     <!-- Navbar -->
-    <nav>
-      <a href="/" class="nav-brand">
-        <img src="assets/icon/logo.svg" />
-        <span>UlinYuk</span>
-      </a>
-      <div class="nav-search">
-        <div class="search-input">
-          <input type="text" placeholder="Yuk cari tempat favoritmu ...." />
-          <div class="icon">
-            <i class="fa-solid fa-magnifying-glass"></i>
+    <nav id="nav">
+      <div class="nav-container">
+        <a href="/" class="nav-brand">
+          <img src="assets/icon/logo.svg" />
+          <span>UlinYuk</span>
+        </a>
+        <div class="nav-search">
+          <div class="search-input">
+            <input type="text" placeholder="Yuk cari tempat favoritmu ...." />
+            <div class="icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="nav-button">
-        <a href="/">
-          <div class="button outline">Sign Up</div>
-        </a>
-        <a href="">
-          <div class="button primary">Login</div>
-        </a>
+        <div class="nav-button">
+          <a href="/">
+            <div class="button outline">Sign Up</div>
+          </a>
+          <a href="">
+            <div class="button primary">Login</div>
+          </a>
+        </div>
       </div>
     </nav>
     <div class="nav-mobile">

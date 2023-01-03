@@ -14,6 +14,8 @@ use App\Http\Livewire\Agen\AgenTiketTravel;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DetailController;
+use App\Http\Controllers\PemesananController;
+use App\Http\Controllers\PembayaranController;
 
 /*
 |--------------------------------------------------------------------------
@@ -85,4 +87,11 @@ Route::middleware([
     Route::get('/dashboard', function () {
         return view('dashboard');
     })->name('dashboard');
+
+    Route::get('/pemesanan/{id}', [PemesananController::class, 'index'])->name('pemesanan');
+    Route::post('/pemesanan/{id}', [PemesananController::class, 'store'])->name('pemesanan.create');
+
+    Route::get('/pembayaran/{id}', [PembayaranController::class, 'index'])->name('pembayaran');
+    Route::get('/checkout/{id}', [PembayaranController::class, 'process'])->name('chekout');
+    Route::post('/checkout/callback', [PembayaranController::class, 'callback'])->name('midtrans-callback');
 });

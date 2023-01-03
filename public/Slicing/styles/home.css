@@ -1,58 +1,89 @@
 /* Hero */
 .hero {
   position: relative;
-  margin: 20px 40px;
-  height: 525px;
+  margin: 10px 10px;
+  height: 620px;
+  border-radius: 20px;
+  overflow: hidden;
 }
 
 .hero .overlay {
   width: 100%;
   height: 100%;
   position: absolute;
-  background-color: #6d67e4;
+  background-color: #000;
   z-index: 1;
   left: 0;
   top: 0;
-  border-radius: 30px;
-  mix-blend-mode: soft-light;
+  opacity: 0.3;
 }
 
-.hero video {
+.hero img {
   width: 100%;
   height: 100%;
   object-fit: cover;
-  border-radius: 30px;
 }
 
+.hero .text {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  left: 60px;
+  color: #fff;
+  z-index: 2;
+}
+
+.hero .text h1 {
+  font-size: 60px;
+  line-height: 60px;
+}
+
+.hero .text a {
+  text-decoration: none;
+}
+
+.hero .text .btn-explore {
+  width: fit-content;
+  margin-top: 20px;
+  color: #fff;
+  font-weight: 500;
+  padding: 8px 30px;
+  background-color: #6d67e4;
+  border-radius: 5px;
+}
 /* Category List */
 .category {
-  margin: 20px 0;
-  padding: 0 40px;
+  width: 100%;
+  padding: 20px 40px;
+  position: sticky;
+  top: 80px;
+  z-index: 8;
+  background-color: #fff;
 }
 
 .category .category-list {
   display: flex;
   align-items: center;
   gap: 15px;
+  width: 100%;
+  overflow-x: scroll;
 }
 
 .category .category-list .category-item {
-  padding: 10px;
-  width: 80px;
-  height: 80px;
+  padding: 10px 15px;
   background-color: #fff;
   color: #6d67e4;
   display: flex;
-  flex-direction: column;
   align-items: center;
   justify-content: space-between;
   border: 1px solid #6d67e4;
-  border-radius: 20px;
+  border-radius: 10px;
   cursor: pointer;
+  gap: 10px;
   transition: ease all 0.5s;
 }
 .category .category-list .category-item i {
-  font-size: 30px;
+  font-size: 18px;
 }
 .category .category-list .category-item span {
   font-size: 14px;
@@ -136,26 +167,35 @@
 
 @media screen and (max-width: 786px) {
   .hero {
-    margin: 20px;
-    height: 200px;
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+    border-radius: 0;
   }
 
-  .hero video {
-    border-radius: 10px;
+  .hero .text {
+    left: 40px;
+  }
+
+  .hero .text h1 {
+    font-size: 40px;
+    line-height: 50px;
   }
 
   .category {
-    padding: 0 20px;
+    padding: 20px;
+  }
+
+  .category .category-list {
+    gap: 5px;
   }
 
   .category .category-list .category-item {
-    width: 60px;
-    height: 60px;
     border-radius: 10px;
   }
 
   .category .category-list .category-item i {
-    font-size: 20px;
+    font-size: 15px;
   }
 
   .category .category-list .category-item span {

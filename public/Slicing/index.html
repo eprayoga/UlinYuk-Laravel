@@ -23,32 +23,35 @@
     />
 
     <!-- CSS -->
+    <link rel="stylesheet" href="styles/global-style.css" />
     <link rel="stylesheet" href="styles/navbar.css" />
     <link rel="stylesheet" href="styles/home.css" />
     <link rel="stylesheet" href="styles/footer.css" />
   </head>
-  <body>
+  <body onscroll="onScroll()">
     <!-- Navbar -->
-    <nav>
-      <a href="/" class="nav-brand">
-        <img src="assets/icon/logo.svg" />
-        <span>UlinYuk</span>
-      </a>
-      <div class="nav-search">
-        <div class="search-input">
-          <input type="text" placeholder="Yuk cari tempat favoritmu ...." />
-          <div class="icon">
-            <i class="fa-solid fa-magnifying-glass"></i>
+    <nav id="nav" class="home">
+      <div class="nav-container">
+        <a href="/" class="nav-brand">
+          <img src="assets/icon/logo.svg" />
+          <span>UlinYuk</span>
+        </a>
+        <div class="nav-search">
+          <div class="search-input">
+            <input type="text" placeholder="Yuk cari tempat favoritmu ...." />
+            <div class="icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="nav-button">
-        <a href="/">
-          <div class="button outline">Sign Up</div>
-        </a>
-        <a href="">
-          <div class="button primary">Login</div>
-        </a>
+        <div class="nav-button">
+          <a href="/">
+            <div class="button outline">Sign Up</div>
+          </a>
+          <a href="">
+            <div class="button primary">Login</div>
+          </a>
+        </div>
       </div>
     </nav>
 
@@ -74,13 +77,17 @@
     <!-- Hero Section -->
     <section class="hero">
       <div class="overlay"></div>
-      <video
-        src="assets/video/hero-video.mp4"
-        muted
-        autoplay
-        loop
-        type="video/mp4"
-      ></video>
+      <img src="assets/images/jumbotron.jpg" alt="" />
+      <div class="text">
+        <div class="tag"># Travel App</div>
+        <h1>
+          We Take Care <br />
+          all of Your Trip
+        </h1>
+        <a href="">
+          <div class="btn-explore">Explore now</div>
+        </a>
+      </div>
     </section>
 
     <!-- Category -->
@@ -93,6 +100,22 @@
         <div class="category-item">
           <i class="fa-solid fa-umbrella-beach"></i>
           <span>Pantai</span>
+        </div>
+        <div class="category-item">
+          <i class="fa-solid fa-mountain-sun"></i>
+          <span>Populer</span>
+        </div>
+        <div class="category-item">
+          <i class="fa-solid fa-mountain-sun"></i>
+          <span>Populer</span>
+        </div>
+        <div class="category-item">
+          <i class="fa-solid fa-mountain-sun"></i>
+          <span>Populer</span>
+        </div>
+        <div class="category-item">
+          <i class="fa-solid fa-mountain-sun"></i>
+          <span>Populer</span>
         </div>
         <div class="category-item">
           <i class="fa-solid fa-mountain-sun"></i>
@@ -222,5 +245,19 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      const navElement = document.getElementById("nav");
+      function onScroll() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          navElement.classList.add("onscroll");
+        } else {
+          navElement.classList.remove("onscroll");
+        }
+      }
+    </script>
   </body>
 </html>

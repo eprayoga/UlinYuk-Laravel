@@ -23,33 +23,36 @@
     />
 
     <!-- CSS -->
+    <link rel="stylesheet" href="styles/global-style.css" />
     <link rel="stylesheet" href="styles/navbar.css" />
     <link rel="stylesheet" href="styles/description.css" />
     <link rel="stylesheet" href="styles/footer.css" />
   </head>
 
-  <body>
+  <body onscroll="onScroll()">
     <!-- Navbar -->
-    <nav>
-      <a href="/" class="nav-brand">
-        <img src="assets/icon/logo.svg" />
-        <span>UlinYuk</span>
-      </a>
-      <div class="nav-search">
-        <div class="search-input">
-          <input type="text" placeholder="Yuk cari tempat favoritmu ...." />
-          <div class="icon">
-            <i class="fa-solid fa-magnifying-glass"></i>
+    <nav id="nav">
+      <div class="nav-container">
+        <a href="/" class="nav-brand">
+          <img src="assets/icon/logo.svg" />
+          <span>UlinYuk</span>
+        </a>
+        <div class="nav-search">
+          <div class="search-input">
+            <input type="text" placeholder="Yuk cari tempat favoritmu ...." />
+            <div class="icon">
+              <i class="fa-solid fa-magnifying-glass"></i>
+            </div>
           </div>
         </div>
-      </div>
-      <div class="nav-button">
-        <a href="/">
-          <div class="button outline">Sign Up</div>
-        </a>
-        <a href="">
-          <div class="button primary">Login</div>
-        </a>
+        <div class="nav-button">
+          <a href="/">
+            <div class="button outline">Sign Up</div>
+          </a>
+          <a href="">
+            <div class="button primary">Login</div>
+          </a>
+        </div>
       </div>
     </nav>
 
@@ -72,9 +75,12 @@
     </div>
 
     <!-- Content -->
-    <a href="/" class="back-button">
-      <i class="fa-solid fa-arrow-left"></i>
-    </a>
+    <div class="back-button" id="back-button">
+      <a href="/">
+        <i class="fa-solid fa-arrow-left"></i>
+      </a>
+      <h3>Sabda Alam Water Park</h3>
+    </div>
     <section class="description">
       <div class="main-description">
         <div class="wisata-name">Sabda Alam Water Park</div>
@@ -291,5 +297,19 @@
         </div>
       </div>
     </footer>
+
+    <script>
+      const navElement = document.getElementById("back-button");
+      function onScroll() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          navElement.classList.add("onscroll");
+        } else {
+          navElement.classList.remove("onscroll");
+        }
+      }
+    </script>
   </body>
 </html>
