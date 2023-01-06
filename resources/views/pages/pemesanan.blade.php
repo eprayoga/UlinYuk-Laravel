@@ -136,7 +136,7 @@
         <input type="hidden" name="jumlah_tiket" value="{{ $dataPesan['visit-number'] }}">
         <input type="hidden" name="total_bayar" value="{{ $tiket->harga * $dataPesan['visit-number'] }}">
         <input type="hidden" name="tanggal_kunjungan" value="{{ $dataPesan['order-date'] }}">
-        <input type="hidden" name="status" value="belum bayar">
+        <input type="hidden" name="status" value="proses">
         <button type="submit" class="btn-pay">Lanjut Bayar</button>
         </section>
     </form>

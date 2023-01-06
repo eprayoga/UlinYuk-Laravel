@@ -21,9 +21,11 @@ class CreatePemesanansTable extends Migration
             $table->integer("total_bayar");
             $table->integer("jumlah_tiket");
             $table->integer("id_pemesan");
-            $table->string("id_tiket");
+            $table->integer("id_travel");
+            $table->integer("id_tiket");
             $table->string("status");
             $table->string("kode");
+            $table->string("status_tiket")->nullable();
 
             $table->string("nama_pengunjung");
             $table->string("email_pengunjung");

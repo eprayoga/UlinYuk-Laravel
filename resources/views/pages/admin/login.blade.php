@@ -13,7 +13,7 @@
         @endif
 
         <form method="POST" action="{{ isset($guard) ? url($guard.'/login') : route('login') }}">
-            <h1>Admin</h1>
+            <h1 class="text-center text-2xl font-bold ">Halaman Login Admin</h1>
             @csrf
 
             <div>

@@ -11,6 +11,10 @@ use App\Http\Livewire\Agen\AgenDashboard;
 use App\Http\Livewire\Agen\AgenDeskripsiTravel;
 use App\Http\Livewire\Agen\AgenGaleriTravel;
 use App\Http\Livewire\Agen\AgenTiketTravel;
+use App\Http\Livewire\Agen\AgenPemesanan;
+use App\Http\Livewire\Agen\AgenVerifikasiTiket;
+
+use App\Http\Livewire\User\UserDashboard;
 
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\DetailController;
@@ -76,6 +80,13 @@ Route::middleware([
         Route::get('/agen/tiket-travel/edit/{id}', [AgenTiketTravel::class, 'edit'])->name('agen.tiket.travel.edit')->middleware('auth:admin');
         Route::post('/agen/tiket-travel/edit/{id}', [AgenTiketTravel::class, 'update'])->name('agen.tiket.travel.update')->middleware('auth:admin');
         Route::delete('/agen/tiket-travel/delete/{id}', [AgenTiketTravel::class, 'destroy'])->name('agen.tiket.travel.delete')->middleware('auth:admin');
+
+        Route::get('/agen/pemesanan', AgenPemesanan::class)->name('agen.pemesanan')->middleware('auth:admin');
+        Route::get('/agen/pemesanan/detail/{id}', [AgenPemesanan::class, 'detail'])->name('agen.pemesanan.detail')->middleware('auth:admin');
+        Route::post('/agen/pemesanan/edit-status/{id}', [AgenPemesanan::class, 'updateStatus'])->name('agen.pemesanan.update.status')->middleware('auth:admin');
+
+        Route::get('/agen/verifikasi-tiket', AgenVerifikasiTiket::class)->name('agen.verifikasi.tiket')->middleware('auth:admin');
+
     });
 });
 
@@ -84,9 +95,9 @@ Route::middleware([
     config('jetstream.auth_session'),
     'verified'
 ])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    })->name('dashboard');
+    Route::get('/dashboard', UserDashboard::class)->name('dashboard');
+    Route::get('/dashboard/my-ticket', [UserDashboard::class, 'myTicket'])->name('my-ticket');
+    Route::get('/dashboard/transaction', [UserDashboard::class, 'transaction'])->name('user.transaction');
 
     Route::get('/pemesanan/{id}', [PemesananController::class, 'index'])->name('pemesanan');
     Route::post('/pemesanan/{id}', [PemesananController::class, 'store'])->name('pemesanan.create');

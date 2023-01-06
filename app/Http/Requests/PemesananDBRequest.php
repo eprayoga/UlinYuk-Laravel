@@ -26,7 +26,7 @@ class PemesananDBRequest extends FormRequest
         return [
             'tanggal_kunjungan' => 'required|date', 
             'total_bayar' => 'required|integer', 
-            'jumlah_tiket' => 'required|integer',  
+            'jumlah_tiket' => 'required|integer',
             'status' => 'required|string', 
             'nama_pengunjung' => 'required|string', 
             'email_pengunjung' => 'required|string', 

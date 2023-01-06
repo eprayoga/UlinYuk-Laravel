@@ -50,6 +50,16 @@
                                 {{ __('Tiket Travel') }}
                             </x-jet-nav-link>
                         </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-jet-nav-link href="{{ route('agen.pemesanan') }}" :active="request()->routeIs('agen.pemesanan')">
+                                {{ __('Transaksi Pemesanan') }}
+                            </x-jet-nav-link>
+                        </div>
+                        <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                            <x-jet-nav-link href="{{ route('agen.verifikasi.tiket') }}" :active="request()->routeIs('agen.verifikasi.tiket')">
+                                {{ __('Verifikasi Tiket') }}
+                            </x-jet-nav-link>
+                        </div>
                     </div>
 
                     <div class="hidden sm:flex sm:items-center sm:ml-6">
@@ -171,8 +181,33 @@
             <!-- Responsive Navigation Menu -->
             <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
                 <div class="pt-2 pb-3 space-y-1">
-                    <x-jet-responsive-nav-link href="{{ route('admin.dashboard') }}" :active="request()->routeIs('admin.dashboard')">
+                    <x-jet-responsive-nav-link href="{{ route('agen.dashboard') }}" :active="request()->routeIs('agen.dashboard')">
                         {{ __('Dashboard') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-jet-responsive-nav-link href="{{ route('agen.deskripsi.travel') }}" :active="request()->routeIs('agen.deskripsi.travel')">
+                        {{ __('Dekripsi Travel') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-jet-responsive-nav-link href="{{ route('agen.galeri.travel') }}" :active="request()->routeIs('agen.galeri.travel')">
+                        {{ __('Galeri Travel') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-jet-responsive-nav-link href="{{ route('agen.tiket.travel') }}" :active="request()->routeIs('agen.tiket.travel')">
+                        {{ __('Tiket Travel') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-jet-responsive-nav-link href="{{ route('agen.pemesanan') }}" :active="request()->routeIs('agen.pemesanan')">
+                        {{ __('Transaksi Pemesanan') }}
+                    </x-jet-responsive-nav-link>
+                </div>
+                <div class="pt-2 pb-3 space-y-1">
+                    <x-jet-responsive-nav-link href="{{ route('agen.verifikasi.tiket') }}" :active="request()->routeIs('agen.verifikasi.tiket')">
+                        {{ __('Verifikasi Tiket') }}
                     </x-jet-responsive-nav-link>
                 </div>
 

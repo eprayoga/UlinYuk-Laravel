@@ -259,6 +259,7 @@
             </form>
           </div>
         </div>
+
       @endforeach
     </section>
 
@@ -327,12 +328,13 @@
       const visitNumber = document.querySelectorAll("#visit-number")
       const spanVisit = document.querySelectorAll("#span-visit")
       
-      for (let i = 0; i < dateInput.length; i++ ) {
+      for (let i = 0; i < dateSelect.length; i++ ) {
         dateInput[i].value = null;
         dateInput[i].addEventListener("change", function() {
           dateSelect[i].innerText = dateInput[i].value;
         })
       }
+      console.log(dateInput[3]);
 
       for (let i = 0; i < btnMin.length; i++ ) {
         visitNumber[i].value = 1;

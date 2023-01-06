@@ -1,0 +1,128 @@
+.dashboard-container {
+    width: 100%;
+    display: flex;
+}
+
+.dashboard-container aside {
+    padding: 20px;
+    width: 270px;
+    height: calc(100vh - 80px);
+    position: sticky;
+    top: 80px;
+}
+
+.dashboard-container aside .sidebar-container {
+    background-color: #6d67e4;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    padding: 20px;
+}
+
+.dashboard-container aside .sidebar-container .sidebar-profile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: #fff;
+}
+
+.dashboard-container aside .sidebar-container .sidebar-profile .profile {
+    width: 80px;
+    height: 80px;
+    object-fit: cover;
+    border-radius: 20px;
+    margin-top: 20px;
+}
+
+.dashboard-container aside .sidebar-container .sidebar-profile .name {
+    font-weight: 500;
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.dashboard-container aside .sidebar-container .sidebar-profile .email {
+    font-weight: 400;
+    font-size: 12px;
+}
+
+.dashboard-container aside .sidebar-container .sidebar-menu {
+    width: 100%;
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.dashboard-container aside .sidebar-container .sidebar-menu li {
+    list-style: none;
+    margin: 5px 0;
+}
+.dashboard-container aside .sidebar-container .sidebar-menu .menu-category {
+    font-size: 12px;
+    margin-left: 10px;
+    color: #fff;
+}
+
+.dashboard-container aside .sidebar-container .sidebar-menu li a {
+    text-decoration: none;
+    color: #fff;
+}
+
+.dashboard-container aside .sidebar-container .sidebar-menu li a .menu-item {
+    padding: 10px 20px;
+    border-radius: 10px;
+    display: flex;
+    gap: 15px;
+    align-items: center;
+    background-color: #6d67e4;
+    color: #fff;
+    transition: ease-in all 0.3s;
+}
+
+.dashboard-container
+    aside
+    .sidebar-container
+    .sidebar-menu
+    li:hover
+    a
+    .menu-item.logout {
+    color: #e82137;
+}
+
+.dashboard-container
+    aside
+    .sidebar-container
+    .sidebar-menu
+    li.active
+    a
+    .menu-item {
+    background-color: #fff;
+    color: #6d67e4;
+}
+
+.dashboard-container
+    aside
+    .sidebar-container
+    .sidebar-menu
+    li:hover
+    a
+    .menu-item {
+    background-color: #fff;
+    color: #6d67e4;
+}
+
+.dashboard-container aside .sidebar-container .sidebar-menu li a .menu-item i {
+    font-size: 16px;
+    text-align: center;
+}
+
+.dashboard-container
+    aside
+    .sidebar-container
+    .sidebar-menu
+    li
+    a
+    .menu-item
+    span {
+    font-size: 14px;
+}

@@ -109,7 +109,9 @@
       @auth()
       <a href="/dashboard">
         <div class="nav-mobile-button">
-          <i class="fa-regular fa-user"></i><span>Dashboard</span>
+          <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" class="w-6 h-6 object-cover rounded-full">
+          {{-- <i class="fa-regular fa-user"></i> --}}
+          <span>Profile</span>
         </div>
       </a>
       @endauth

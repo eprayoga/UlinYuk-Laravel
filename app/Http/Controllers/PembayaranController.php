@@ -36,7 +36,8 @@ class PembayaranController extends Controller
         $total_price = $pemesanan->total_bayar;
 
         Pemesanan::where('id', $id)->update([
-            'status' => "sudah bayar"
+            'status' => "sukses",
+            'status_tiket' => "belum digunakan"
         ]);
 
         // Konfigurasi midtrans

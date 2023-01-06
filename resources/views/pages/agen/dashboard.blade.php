@@ -1,5 +1,5 @@
 @section('title')
-    Admin Dashboard
+Agen Wisata {{ $travel->nama_travel }}
 @endsection
 
 <x-slot name="header">

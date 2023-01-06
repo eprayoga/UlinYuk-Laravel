@@ -30,12 +30,15 @@ class PemesananController extends Controller
         $data = $request->all();
         $data['id_pemesan'] = Auth::user()->id;
         $data['id_tiket'] = $id;
+
+        $tiket = Tiket::where('id', $data['id_tiket'])->firstOrFail();
+        $data['id_travel'] = $tiket->id_travel;
         $data['tanggal_pemesanan'] = date("Y-m-d");
         $data['kode'] = 'ULINYUK-' . mt_rand(000000,999999);
 
         Pemesanan::create($data);
 
-        $result = Pemesanan::firstOrFail();
+        $result = Pemesanan::orderByDesc('created_at')->firstOrFail();
 
         return redirect()->route('pembayaran', $result->id);
     }

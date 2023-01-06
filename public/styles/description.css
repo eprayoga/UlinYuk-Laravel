@@ -260,7 +260,7 @@
 }
 
 .ticket-catalog .catalog-item .dropdown .order-form .order-date .date input {
-    visibility: hidden;
+    opacity: 0;
 }
 
 .ticket-catalog .catalog-item .dropdown .order-form .order-date .date span {

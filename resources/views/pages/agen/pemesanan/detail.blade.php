@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Pembayaran Tiket {{ $travel->nama_travel }} </title>
+    <title>Detail Tiket {{ $travel->nama_travel }} </title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -29,34 +29,8 @@
     <link rel="stylesheet" href="{{ asset('styles/navbar.css') }}" />
 </head>
 <body>
-    <nav id="nav">
-        <div class="nav-container">
-          <a href="/" class="nav-brand">
-            <img src="{{ asset('assets/icon/logo.svg') }}" />
-            <span>UlinYuk</span>
-          </a>
-        </div>
-      </nav>
-      <div class="nav-mobile">
-        <a href="/" class="active">
-          <div class="nav-mobile-button">
-            <i class="fa-solid fa-magnifying-glass"></i><span>Explore</span>
-          </div>
-        </a>
-        <a href="/">
-          <div class="nav-mobile-button">
-            <i class="fa-regular fa-heart"></i><span>Suka</span>
-          </div>
-        </a>
-        <a href="/">
-          <div class="nav-mobile-button">
-            <i class="fa-regular fa-user"></i><span>Login</span>
-          </div>
-        </a>
-      </div>
-
     <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <h1 class="text-center text-gray-800 font-bold text-2xl">Halaman Checkout Tiket {{ $travel->nama_travel }}</h1>
+        <h1 class="text-center text-gray-800 font-bold text-2xl">Detail Tiket {{ $travel->nama_travel }}</h1>
         <div class="relative py-3 max-w-7xl sm:mx-auto">
         <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
             <div class="max-w-full mx-auto">
@@ -71,6 +45,14 @@
             </div>
             <div class="divide-y divide-gray-200">
                 <div class="py-8 text-base leading-6 space-y-1 text-gray-700 sm:text-lg sm:leading-7">
+                <div class="flex gap-x-28 justify-between">
+                    <label class="leading-loose">Status Pembayaran</label>
+                    @if ($pemesanan->status == "lunas")
+                        <div class="px-2 py-1 bg-green-200 text-green-500 font-medium rounded-lg text-center">{{ $pemesanan->status }}</div>
+                    @else
+                        <div class="px-2 py-1 bg-red-200 text-red-500 font-medium rounded-lg text-center">{{ $pemesanan->status }}</div>
+                    @endif
+                </div>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Kode Tiket</label>
                     <div class="text-right font-bold">{{ $pemesanan->kode }}</div>
@@ -115,9 +97,7 @@
                 </div>
                 </div>
                 <div class="pt-4 flex items-center flex-col gap-3">
-                    <a href="{{ route('chekout', $pemesanan->id) }}" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-blue-700 focus:outline-none">Bayar Lewat Midtrans</a>
-                    <button class="bg-green-500 flex justify-center items-center gap-3 w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-green-600 focus:outline-none"><i class="fa-brands fa-whatsapp text-2xl"></i> Chat Admin</button>
-                    <a href="{{ route('/') }}" class="bg-gray-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-gray-700 focus:outline-none">Cari Travel Lagi</a>
+                    <a href="{{ route('agen.pemesanan') }}" class="bg-gray-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-gray-700 focus:outline-none">Kembali</a>
                 </div>
             </div>
             </div>
