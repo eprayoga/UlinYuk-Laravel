@@ -40,6 +40,19 @@ class UserDashboard extends Component
         ]);
     }
 
+    public function myTicketDetail($id) {
+        $user_id = Auth::user()->id;
+        $ticket = Pemesanan::with(['travel', 'tiket'])->where([
+            ['id_pemesan', '=', $user_id],
+            ['status', '=', 'sukses'],
+            ['id', '=', $id]
+        ])->firstOrFail();
+
+        return view('pages.user.myticket-detail', [
+            'ticket' => $ticket
+        ]);
+    }
+
     public function transaction() {
         $user_id = Auth::user()->id;
         $transactions = Pemesanan::with(['travel', 'tiket'])->where('id_pemesan', '=', $user_id)->latest()->get();
@@ -48,4 +61,14 @@ class UserDashboard extends Component
             'transactions' => $transactions
         ]);
     }
+
+    public function transactionDetail($id) {
+        $user_id = Auth::user()->id;
+        $transaction = Pemesanan::with(['travel', 'tiket'])->where([['id_pemesan', '=', $user_id], ['id', '=', $id]])->firstOrFail();
+
+        return view('pages.user.transaction-detail', [
+            'transaction' => $transaction
+        ]);
+    }
+
 }

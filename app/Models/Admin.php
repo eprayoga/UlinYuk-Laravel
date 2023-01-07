@@ -29,6 +29,7 @@ class Admin extends Authenticatable
         'email',
         'password',
         'level',
+        'id_travel'
     ];
 
     /**

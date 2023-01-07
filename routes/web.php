@@ -6,6 +6,7 @@ use App\Http\Livewire\Detail;
 use App\Http\Livewire\Admin\AdminDashboard;
 use App\Http\Livewire\Admin\AdminDataTravel;
 use App\Http\Livewire\Admin\AdminDataKategori;
+use App\Http\Livewire\Admin\AdminDataAgen;
 
 use App\Http\Livewire\Agen\AgenDashboard;
 use App\Http\Livewire\Agen\AgenDeskripsiTravel;
@@ -61,6 +62,11 @@ Route::middleware([
         Route::get('/admin/data-kategori/edit/{id}', [AdminDataKategori::class, 'edit'])->name('admin.data.kategori.edit')->middleware('auth:admin');
         Route::post('/admin/data-kategori/edit/{id}', [AdminDataKategori::class, 'update'])->name('admin.data.kategori.update')->middleware('auth:admin');
         Route::delete('/admin/data-kategori/delete/{id}', [AdminDataKategori::class, 'destroy'])->name('admin.data.kategori.delete')->middleware('auth:admin');
+
+        Route::get('/admin/data-agen', AdminDataAgen::class)->name('admin.data.agen')->middleware('auth:admin');
+        Route::get('/admin/data-agen/create', [AdminDataAgen::class, 'create'])->name('admin.data.agen.create')->middleware('auth:admin');
+        Route::post('/admin/data-agen/store', [AdminDataAgen::class, 'store'])->name('admin.data.agen.store')->middleware('auth:admin');
+
     });
 
     Route::group(['middleware'=>['role:agen']], function() {
@@ -97,7 +103,9 @@ Route::middleware([
 ])->group(function () {
     Route::get('/dashboard', UserDashboard::class)->name('dashboard');
     Route::get('/dashboard/my-ticket', [UserDashboard::class, 'myTicket'])->name('my-ticket');
+    Route::get('/dashboard/my-ticket/detail/{id}', [UserDashboard::class, 'myTicketDetail'])->name('my-ticket.detail');
     Route::get('/dashboard/transaction', [UserDashboard::class, 'transaction'])->name('user.transaction');
+    Route::get('/dashboard/transaction/detail/{id}', [UserDashboard::class, 'transactionDetail'])->name('user.transaction.detail');
 
     Route::get('/pemesanan/{id}', [PemesananController::class, 'index'])->name('pemesanan');
     Route::post('/pemesanan/{id}', [PemesananController::class, 'store'])->name('pemesanan.create');

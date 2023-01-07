@@ -227,7 +227,7 @@
             <hr />
             <form action="{{ route("pemesanan", $tiket->id) }}" method="GET" class="order-detail">
               <div class="order-form">
-                <label for="order-date" class="order-date">
+                <label class="order-date">
                   <i class="fa-solid fa-calendar-days"></i>
                   <div class="date">
                     <p>Tanggal Kunjungan</p>

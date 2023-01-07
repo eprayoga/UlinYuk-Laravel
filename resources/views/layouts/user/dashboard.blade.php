@@ -135,7 +135,7 @@
           <div class="sidebar-menu">
             <ul class="main-menu">
               <li class="{{ (request()->is('dashboard')) ? 'active' : '' }}">
-                <a href="">
+                <a href="/dashboard">
                   <div class="menu-item">
                     <i class="fa-solid fa-grip"></i> <span>Dashboard</span>
                   </div>

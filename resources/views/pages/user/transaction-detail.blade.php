@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Detail Tiket {{ $travel->nama_travel }} </title>
+    <title>Detail Transaksi Tiket {{ $transaction->travel->nama_travel }} </title>
 
     <script src="https://cdn.tailwindcss.com"></script>
 
@@ -30,74 +30,78 @@
 </head>
 <body>
     <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <h1 class="text-center text-gray-800 font-bold text-2xl">Detail Tiket {{ $travel->nama_travel }}</h1>
+        <h1 class="text-center text-gray-800 font-bold text-2xl">Detail Transaksi Tiket {{ $transaction->travel->nama_travel }}</h1>
         <div class="relative py-3 max-w-7xl sm:mx-auto">
         <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
             <div class="max-w-full mx-auto">
             <div class="flex items-center space-x-5">
                 <div class="h-14 w-14 bg-gray-200 rounded-2xl overflow-hidden flex flex-shrink-0 justify-center items-center text-gray-500 text-2xl font-mono">
-                    <img src="{{ Storage::url($travel->galeris->first()->foto) }}" alt="" class="w-full h-full object-cover">
+                    <img src="{{ Storage::url($transaction->travel->galeris->first()->foto) }}" alt="" class="w-full h-full object-cover">
                 </div>
                 <div class="block pl-2 font-semibold text-xl self-start text-gray-700">
-                <h2 class="leading-relaxed">{{ $travel->nama_travel }}</h2>
-                <p class="text-sm text-gray-500 font-normal leading-relaxed">{{ $pemesanan->tiket->nama_tiket }}</p>
+                <h2 class="leading-relaxed">{{ $transaction->travel->nama_travel }}</h2>
+                <p class="text-sm text-gray-500 font-normal leading-relaxed">{{ $transaction->tiket->nama_tiket }}</p>
                 </div>
             </div>
             <div class="divide-y divide-gray-200">
                 <div class="py-8 text-base leading-6 space-y-1 text-gray-700 sm:text-lg sm:leading-7">
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Status Pembayaran</label>
-                    @if ($pemesanan->status == "sukses")
-                        <div class="px-2 py-1 bg-green-200 text-green-500 font-medium rounded-lg text-center">{{ $pemesanan->status }}</div>
+                    @if ($transaction->status == "sukses")
+                        <div class="px-2 py-1 bg-green-200 text-green-500 font-medium rounded-lg text-center">{{ $transaction->status }}</div>
                     @else
-                        <div class="px-2 py-1 bg-yellow-100 text-yellow-500 font-medium rounded-lg text-center">{{ $pemesanan->status }}</div>
+                        <div class="px-2 py-1 bg-yellow-100 text-yellow-500 font-medium rounded-lg text-center">{{ $transaction->status }}</div>
                     @endif
                 </div>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Kode Tiket</label>
-                    <div class="text-right font-bold">{{ $pemesanan->kode }}</div>
+                    <div class="text-right font-bold">{{ $transaction->kode }}</div>
                 </div>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Tanggal Kunjungan</label>
-                    <div class="text-right font-bold">{{ $pemesanan->tanggal_kunjungan }}</div>
+                    <div class="text-right font-bold">{{ $transaction->tanggal_kunjungan }}</div>
                 </div>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Nama Pengunjung</label>
-                    <div class="text-right font-bold">{{ $pemesanan->nama_pengunjung }}</div>
+                    <div class="text-right font-bold">{{ $transaction->nama_pengunjung }}</div>
                 </div>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Email Pengunjung</label>
-                    <div class="text-right font-bold">{{ $pemesanan->email_pengunjung }}</div>
+                    <div class="text-right font-bold">{{ $transaction->email_pengunjung }}</div>
                 </div>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Nomor Pengunjung</label>
-                    <div class="text-right font-bold">{{ $pemesanan->nomor_pengunjung }}</div>
+                    <div class="text-right font-bold">{{ $transaction->nomor_pengunjung }}</div>
                 </div>
                 <div class="flex flex-col">
                     <label class="leading-loose">Permintaan Khusus :</label>
-                    <div class="text-left p-4 bg-gray-200 rounded-xl font-bold">{{ $pemesanan->permintaan }}</div>
+                    <div class="text-left p-4 bg-gray-200 rounded-xl font-bold">{{ $transaction->permintaan }}</div>
                 </div>
                 <br>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Tanggal Pemesanan</label>
-                    <div class="text-right font-bold">{{ $pemesanan->tanggal_pemesanan }}</div>
+                    <div class="text-right font-bold">{{ $transaction->tanggal_pemesanan }}</div>
                 </div>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Harga Tiket</label>
-                    <div class="text-right font-bold">Rp {{ $pemesanan->tiket->harga }}</div>
+                    <div class="text-right font-bold">Rp {{ $transaction->tiket->harga }}</div>
                 </div>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Jumlah Pemesanan</label>
-                    <div class="text-right font-bold">{{ $pemesanan->jumlah_tiket }}</div>
+                    <div class="text-right font-bold">{{ $transaction->jumlah_tiket }} Tiket</div>
                 </div>
                 <br>
                 <div class="flex gap-28 justify-between items-end">
                     <label class="leading-loose">Total Bayar</label>
-                    <div class="text-right font-bold text-3xl text-indigo-600">Rp {{ $pemesanan->total_bayar }}</div>
+                    <div class="text-right font-bold text-3xl text-indigo-600">Rp {{ $transaction->total_bayar }}</div>
                 </div>
                 </div>
                 <div class="pt-4 flex items-center flex-col gap-3">
-                    <a href="{{ route('agen.pemesanan') }}" class="bg-gray-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-gray-700 focus:outline-none">Kembali</a>
+                    @if ($transaction->status == 'proses')
+                        <a href="{{ route('chekout', $transaction->id) }}" class="bg-blue-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-blue-700 focus:outline-none">Bayar Lewat Midtrans</a>
+                        <button class="bg-green-500 flex justify-center items-center gap-3 w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-green-600 focus:outline-none"><i class="fa-brands fa-whatsapp text-2xl"></i> Chat Admin</button>
+                    @endif
+                    <a href="{{ route('user.transaction') }}" class="bg-gray-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-gray-700 focus:outline-none">Kembali</a>
                 </div>
             </div>
             </div>

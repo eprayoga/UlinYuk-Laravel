@@ -1,7 +1,7 @@
 @extends('layouts.user.dashboard')
 
 @section('title')
-    Dashboard
+    Tiket Saya
 @endsection
 
 @section('content')
@@ -33,7 +33,7 @@
         <div x-show="openTab === 1">
           <div class="flex flex-col gap-4 w-full">
             @forelse ($allTickets as $ticket)
-            <div class="flex justify-between rounded-lg bg-white shadow-lg w-full">
+            <a href="{{ route('my-ticket.detail', $ticket->id) }}" class="flex justify-between rounded-lg bg-white shadow-lg w-full cursor-pointer hover:scale-105 ease-in duration-300">
               <div class="flex flex-col md:flex-row md:max-w-xl"></div>
               <img class="w-60 h-40 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ Storage::url($ticket->travel->galeris->first()->foto) }}" alt="" />
               <div class="p-6 flex flex-col justify-start w-full">
@@ -48,7 +48,7 @@
               @else
                 <div class="m-6 py-1 px-2 bg-[#EE0933] rounded-lg h-min w-max text-xs whitespace-nowrap text-white">Sudah Digunakan</div>
               @endif
-            </div>
+            </a>
             @empty
               <div class="flex flex-col items-center gap-3 w-full">
                 <h3 class="text-center text-gray-500">Anda Belum Memiliki Ticket</h3>
@@ -64,7 +64,7 @@
           <div class="flex flex-col gap-4 w-full">
           @forelse ($allTickets as $ticket)
           @if ($ticket->status_tiket == "belum digunakan")
-            <div class="flex justify-between rounded-lg bg-white shadow-lg w-full">
+            <div class="flex justify-between rounded-lg bg-white shadow-lg w-full cursor-pointer hover:scale-105 ease-in duration-300">
               <div class="flex flex-col md:flex-row md:max-w-xl"></div>
               <img class="w-60 h-40 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ Storage::url($ticket->travel->galeris->first()->foto) }}" alt="" />
               <div class="p-6 flex flex-col justify-start w-full">
@@ -97,7 +97,7 @@
           <div class="flex flex-col gap-4 w-full">
           @forelse ($allTickets as $ticket)
           @if ($ticket->status_tiket == "digunakan")
-            <div class="flex justify-between rounded-lg bg-white shadow-lg w-full">
+            <div class="flex justify-between rounded-lg bg-white shadow-lg w-full cursor-pointer hover:scale-105 ease-in duration-300">
               <div class="flex flex-col md:flex-row md:max-w-xl"></div>
               <img class="w-60 h-40 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ Storage::url($ticket->travel->galeris->first()->foto) }}" alt="" />
               <div class="p-6 flex flex-col justify-start w-full">
