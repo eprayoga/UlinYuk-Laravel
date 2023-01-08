@@ -23,7 +23,8 @@ class AgenDeskripsiTravel extends Component
         ])
         ->layout('layouts.agen.dashboard');
     }
-    public function update(TravelRequest $request)
+    
+    public function update(Request $request)
     {
         $id = Auth::user()->id_travel;
         $data = $request->all();

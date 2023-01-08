@@ -8,84 +8,88 @@
     </h2>
 </x-slot>
 
-<div class="py-12">
-    <div class="max-w-7xl mx-auto sm:px-2 lg:px-2">
-        <div class="bg-white overflow-hidden sm:rounded-lg">
-            <div class="min-w-screen min-h-screen bg-gray-100 flex justify-center font-sans overflow-scroll py-5 ">
-                <div class="w-full overflow-scroll">
-                      <div class="bg-white shadow-md rounded my-6 overflow-scroll">
-                        <table class="min-w-max w-full table-auto overflow-scroll">
-                            <thead>
-                                <tr class="bg-gray-200 text-gray-600 uppercase text-sm leading-normal">
-                                    <th class="py-3 px-6 text-left">Kode Transaksi</th>
-                                    <th class="py-3 px-6 text-left">Tanggal Transaksi</th>
-                                    <th class="py-3 px-6 text-left">Nama Pengunjung</th>
-                                    <th class="py-3 px-6 text-left">Nama Tiket</th>
-                                    <th class="py-3 px-6 text-left">Jumlah</th>
-                                    <th class="py-3 px-6 text-left">Total Harga</th>
-                                    <th class="py-3 px-6 text-left">Status Pembayaran</th>
-                                    <th class="py-3 px-6 text-center">Aksi</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-gray-600 text-sm font-light">
-                                @forelse ($pemesanans as $pemesanan)
-                                    <tr class="border-b border-gray-200 hover:bg-gray-100">
-                                        <td class="py-3 px-6 text-center">
-                                                <span class="font-medium">{{ $pemesanan->kode }}</span>
-                                        </td>
-                                        <td class="py-3 px-6 text-center">
-                                                <span class="font-medium">{{ $pemesanan->tanggal_pemesanan }}</span>
-                                        </td>
-                                        <td class="py-3 px-6 text-left">
-                                                <span class="font-medium">{{ $pemesanan->nama_pengunjung }}</span>
-                                        </td>
-                                        <td class="py-3 px-6 text-left">
-                                                <span class="font-medium">{{ $pemesanan->tiket->nama_tiket }}</span>
-                                        </td>
-                                        <td class="py-3 px-6 text-center">
-                                                <span class="font-medium">{{ $pemesanan->jumlah_tiket }} Tiket</span>
-                                        </td>
-                                        <td class="py-3 px-6 text-left">
-                                                <span class="font-medium">Rp {{ $pemesanan->total_bayar }}</span>
-                                        </td>
-                                        <td class="py-3 px-6 text-center">
-                                            @if ($pemesanan->status == "sukses")
-                                                <span class="px-2 py-1 bg-green-200 text-green-500 font-medium rounded-lg text-center">{{ $pemesanan->status }}</span>
-                                            @else
-                                                <span class="px-2 py-1 bg-red-200 text-red-500 font-medium rounded-lg text-center">{{ $pemesanan->status }}</span>
-                                            @endif
-                                        </td>
-                                        <td class="py-3 px-6 text-center">
-                                            <div class="flex item-center gap-1 justify-center">
-                                                @if ($pemesanan->status == "sukses")
-                                                    <form action="{{ route('agen.pemesanan.update.status', $pemesanan->id) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('post') }}
-                                                        <button type="submit" class="py-1 px-2 bg-yellow-500 text-gray-900 font-medium">Batalkan Pembayaran</button>
-                                                    </form>
-                                                @else
-                                                    <form action="{{ route('agen.pemesanan.update.status', $pemesanan->id) }}" method="POST">
-                                                        {{ csrf_field() }}
-                                                        {{ method_field('post') }}
-                                                        <button type="submit" class="py-1 px-2 bg-green-600 text-white font-medium">Validasi Pembayaran</button>
-                                                    </form>
-                                                @endif
-                                                <a href="{{ route('agen.pemesanan.detail', $pemesanan->id) }}">
-                                                    <div class="py-1 px-2 bg-indigo-500 text-white font-medium">Detail</div>
-                                                </a>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @empty
-                                    <h1 class="text-gray-700 text-center">
-                                        Belum ada data Tiket
-                                    </h1>
-                                @endforelse
-                            </tbody>
-                        </table>
-                    </div>
+@section('content')
+
+<div class="container grid px-6 mx-auto">
+    <h2
+      class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200"
+    >
+      Tables Data Tiket
+    </h2>
+
+    <a href="{{ route('agen.tiket.travel.post') }}" class="my-10 w-fit bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded">
+        Tambah Tiket
+      </a>
+    <div class="w-full overflow-hidden rounded-lg shadow-xs">
+      <div class="w-full overflow-x-auto">
+        <table class="w-full whitespace-no-wrap">
+          <thead>
+            <tr
+              class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800"
+            >
+              <th class="px-4 py-3">Kode Transaksi</th>
+              <th class="px-4 py-3">Tanggal Transaksi</th>
+              <th class="px-4 py-3">Nama Pengunjung</th>
+              <th class="px-4 py-3">Nama Tiket</th>
+              <th class="px-4 py-3">Jumlah</th>
+              <th class="px-4 py-3">Total Harga</th>
+              <th class="px-4 py-3">Status Pembayaran</th>
+              <th class="px-4 py-3 text-center">Aksi</th>
+            </tr>
+          </thead>
+          <tbody
+            class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800"
+          >
+          @forelse ($pemesanans as $pemesanan)
+            <tr class="text-gray-700 dark:text-gray-400">
+              <td class="px-4 py-3 text-sm">
+                {{ $pemesanan->kode }}
+              </td>
+              <td class="px-4 py-3 text-sm text-center">{{ $pemesanan->tanggal_pemesanan }}</td>
+              <td class="px-4 py-3 text-sm">{{ $pemesanan->nama_pengunjung }}</td>
+              <td class="px-4 py-3 text-sm">{{ $pemesanan->tiket->nama_tiket }}</td>
+              <td class="px-4 py-3 text-sm text-center">{{ $pemesanan->jumlah_tiket }} Tiket</td>
+              <td class="px-4 py-3 text-sm text-center">Rp {{ $pemesanan->total_bayar }}
+              </td>
+
+              <td class="px-4 py-3 text-center">
+                @if ($pemesanan->status == "sukses")
+                    <span class="px-2 py-1 bg-green-200 text-green-500 font-medium rounded-lg text-center">{{ $pemesanan->status }}</span>
+                @else
+                    <span class="px-2 py-1 bg-red-200 text-red-500 font-medium rounded-lg text-center">{{ $pemesanan->status }}</span>
+                @endif
+            </td>
+            <td class="px-4 py-3 text-center">
+                <div class="flex item-center gap-1 justify-center">
+                    @if ($pemesanan->status == "sukses")
+                        <form action="{{ route('agen.pemesanan.update.status', $pemesanan->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('post') }}
+                            <button type="submit" class="py-1 px-2 bg-yellow-500 text-gray-900 font-medium">Batalkan Pembayaran</button>
+                        </form>
+                    @else
+                        <form action="{{ route('agen.pemesanan.update.status', $pemesanan->id) }}" method="POST">
+                            {{ csrf_field() }}
+                            {{ method_field('post') }}
+                            <button type="submit" class="py-1 px-2 bg-green-600 text-white font-medium">Validasi Pembayaran</button>
+                        </form>
+                    @endif
+                    <a href="{{ route('agen.pemesanan.detail', $pemesanan->id) }}">
+                        <div class="py-1 px-2 bg-indigo-500 text-white font-medium">Detail</div>
+                    </a>
                 </div>
-            </div>
-        </div>
+            </td>
+            </tr>
+            @empty
+                <h1 class="text-gray-700 text-center">
+                    Belum ada data Tiket
+                </h1>
+            @endforelse
+          </tbody>
+        </table>
+      </div>
     </div>
+  </div>
 </div>
+
+@endsection

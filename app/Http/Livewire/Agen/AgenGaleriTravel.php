@@ -32,14 +32,14 @@ class AgenGaleriTravel extends Component
 
         GaleriTravel::create($data);
 
-        return redirect()->route('agen.galeri.travel');
+        return redirect()->route('agen.galeri.travel')->with('success', 'Sukses Menambahkan Foto');
     }
 
     public function destroy($id) {
         $item = GaleriTravel::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('agen.galeri.travel');
+        return redirect()->route('agen.galeri.travel')->with('toast_success', 'Sukses Menghapus Foto');
     }
 
 }

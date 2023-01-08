@@ -28,9 +28,9 @@
     <link rel="stylesheet" href="{{ asset('styles/global-style.css') }}" />
     <link rel="stylesheet" href="{{ asset('styles/navbar.css') }}" />
 </head>
-<body>
-    <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-12">
-        <h1 class="text-center text-gray-800 font-bold text-2xl">Detail Tiket {{ $travel->nama_travel }}</h1>
+<body class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
+    <div class="min-h-screen py-6 flex flex-col justify-center sm:py-12 bg-white divide-y dark:bg-gray-800">
+        <h1 class="text-center text-white font-bold text-2xl">Detail Tiket {{ $travel->nama_travel }}</h1>
         <div class="relative py-3 max-w-7xl sm:mx-auto">
         <div class="relative px-4 py-10 bg-white mx-8 md:mx-0 shadow rounded-3xl sm:p-10">
             <div class="max-w-full mx-auto">
@@ -88,7 +88,7 @@
                 </div>
                 <div class="flex gap-x-28 justify-between">
                     <label class="leading-loose">Jumlah Pemesanan</label>
-                    <div class="text-right font-bold">{{ $pemesanan->jumlah_tiket }}</div>
+                    <div class="text-right font-bold">{{ $pemesanan->jumlah_tiket }} Tiket</div>
                 </div>
                 <br>
                 <div class="flex gap-28 justify-between items-end">
@@ -97,6 +97,19 @@
                 </div>
                 </div>
                 <div class="pt-4 flex items-center flex-col gap-3">
+                    @if ($pemesanan->status == "sukses")
+                        <form action="{{ route('agen.pemesanan.update.status', $pemesanan->id) }}" method="POST" class="w-full">
+                            {{ csrf_field() }}
+                            {{ method_field('post') }}
+                            <button type="submit" class="bg-yellow-500 flex justify-center items-center w-full text-gray-900 px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-yellow-600 focus:outline-none">Batalkan Pembayaran</button>
+                        </form>
+                    @else
+                        <form action="{{ route('agen.pemesanan.update.status', $pemesanan->id) }}" method="POST" class="w-full">
+                            {{ csrf_field() }}
+                            {{ method_field('post') }}
+                            <button type="submit" class="bg-green-600 flex justify-center items-center w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-green-700 focus:outline-none">Validasi Pembayaran</button>
+                        </form>
+                    @endif
                     <a href="{{ route('agen.pemesanan') }}" class="bg-gray-500 flex justify-center items-center w-full text-white px-4 py-3 rounded-md transition-all ease-in duration-300 font-bold hover:bg-gray-700 focus:outline-none">Kembali</a>
                 </div>
             </div>

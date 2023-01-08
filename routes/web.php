@@ -92,6 +92,7 @@ Route::middleware([
         Route::post('/agen/pemesanan/edit-status/{id}', [AgenPemesanan::class, 'updateStatus'])->name('agen.pemesanan.update.status')->middleware('auth:admin');
 
         Route::get('/agen/verifikasi-tiket', AgenVerifikasiTiket::class)->name('agen.verifikasi.tiket')->middleware('auth:admin');
+        Route::post('/agen/verifikasi-tiket', [AgenVerifikasiTiket::class, 'verification'])->name('agen.verifikasi.tiket.update')->middleware('auth:admin');
 
     });
 });
