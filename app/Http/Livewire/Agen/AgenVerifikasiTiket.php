@@ -27,12 +27,16 @@ class AgenVerifikasiTiket extends Component
         ])->first();
 
         if ($pemesanan) {
-            if($pemesanan->status_tiket == "belum digunakan") {
-                $pemesanan->update(['status_tiket' => 'digunakan']);
-
-                return redirect()->route('agen.verifikasi.tiket')->with('success', 'Sukses Memverifikasi Tiket');
+            if($pemesanan->status == "sukses") {
+                if($pemesanan->status_tiket == "belum digunakan") {
+                    $pemesanan->update(['status_tiket' => 'digunakan']);
+    
+                    return redirect()->route('agen.verifikasi.tiket')->with('success', 'Sukses Memverifikasi Tiket');
+                } else {
+                    return back()->with('toast_error', 'Tikat Sudah Digunakan');
+                }
             } else {
-                return back()->with('toast_error', 'Tikat Sudah Digunakan');
+                return back()->with('toast_error', 'Status Pembayaran Tiket masih dalam proses');
             }
         } else {
             return back()->with('toast_error', 'Tikat Tidak Ditemukan');

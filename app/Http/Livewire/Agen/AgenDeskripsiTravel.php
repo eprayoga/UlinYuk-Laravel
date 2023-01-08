@@ -32,6 +32,6 @@ class AgenDeskripsiTravel extends Component
         $data['slug'] = Str::slug($request->nama_travel);
         $item->update($data);
 
-        return redirect()->route('agen.deskripsi.travel');
+        return redirect()->route('agen.deskripsi.travel')->with('success', 'Sukses Mengubah Deskripsi Travel');
     }
 }

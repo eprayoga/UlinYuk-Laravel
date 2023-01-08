@@ -129,7 +129,7 @@ Agen Wisata {{ $travel->nama_travel }}
                           <form action="{{ route('agen.pemesanan.update.status', $pemesanan->id) }}" method="POST">
                               {{ csrf_field() }}
                               {{ method_field('post') }}
-                              <button type="submit" class="py-1 px-2 bg-green-600 text-white font-medium">Validasi Pembayaran</button>
+                              <button type="submit" class="py-1 px-2 bg-green-600 text-white font-medium btn-confirm">Validasi Pembayaran</button>
                           </form>
                       @endif
                       <a href="{{ route('agen.pemesanan.detail', $pemesanan->id) }}">
@@ -215,3 +215,25 @@ Agen Wisata {{ $travel->nama_travel }}
     </div>
   </div>
 @endsection
+
+@push('addon-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+      $('.btn-confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Apakah anda yakin ingin mengubah status?`,
+              icon: "info",
+              buttons: true,
+              dangerMode: false,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+</script>
+@endpush

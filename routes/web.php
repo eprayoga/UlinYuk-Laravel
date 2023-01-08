@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Home;
+use App\Http\Livewire\Category;
 use App\Http\Livewire\Detail;
 use App\Http\Livewire\Admin\AdminDashboard;
 use App\Http\Livewire\Admin\AdminDataTravel;
@@ -34,6 +35,7 @@ use App\Http\Controllers\PembayaranController;
 */
 
 Route::get('/', Home::class)->name('/');
+Route::get('/kategori/{id}', [Category::class, 'index'])->name('kategori');
 Route::get('/detail/{id}', [DetailController::class, 'index'])->name('detail');
 
 Route::group(['prefix' => 'admin', 'middleware'=>['admin:admin']], function(){

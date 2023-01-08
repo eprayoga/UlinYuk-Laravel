@@ -23,7 +23,7 @@
           <span>Populer</span>
         </div>
         @foreach ($kategoris as $kategori)
-          <a href="" class="category-item">
+          <a href="{{ route('kategori', $kategori->slug) }}" class="category-item">
             {{-- <i class="fa-solid fa-umbrella-beach"></i> --}}
             <span class="font-medium">{{ $kategori->nama_kategori }}</span>
           </a>

@@ -4,25 +4,44 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Ulin Yuk - Travel App</title>
+    <title>UlinYuk - Kategori {{ $isKategori->nama_kategori }}</title>
 
-    <!-- Scripts -->
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Exo:ital,wght@0,400;0,600;0,700;0,800;0,900;1,400;1,600;1,700;1,800;1,900&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap"
+      rel="stylesheet"
+    />
+
+    <!-- Fontawesome -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+      integrity="sha512-MV7K8+y+gLIBoVD59lQIYicR65iaqukzvf/nwasF0nqhPay5w/9lJmVM2hMDcnK1OnMGCdVK+iQrJ7lzPJQd1w=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.min.js"></script>
 
-    @include('includes.home.style')
+    <!-- CSS -->
+    <link rel="stylesheet" href={{ asset("styles/global-style.css")}} />
+    <link rel="stylesheet" href={{ asset("styles/navbar.css")}} />
+    <link rel="stylesheet" href={{ asset("styles/home.css")}} />
+    <link rel="stylesheet" href={{ asset("styles/footer.css")}} />
   </head>
   <body onscroll="onScroll()">
     <!-- Navbar -->
-    <nav id="nav" class="home">
+    <nav id="nav">
       <div class="nav-container">
         <a href="/" class="nav-brand">
-          <img src="assets/icon/logo.svg" />
+          <img src="{{ asset('assets/icon/logo.svg') }}" />
           <span>UlinYuk</span>
         </a>
         <div class="nav-search">
           <div class="search-input">
-            <input type="text" class="font-light" placeholder="Yuk cari tempat favoritmu ...." />
+            <input type="text" placeholder="Yuk cari tempat favoritmu ...." />
             <div class="icon">
               <i class="fa-solid fa-magnifying-glass"></i>
             </div>
@@ -87,7 +106,6 @@
       </div>
     </nav>
 
-    <!-- Nav Mobile -->
     <div class="nav-mobile">
       <a href="/" class="active">
         <div class="nav-mobile-button">
@@ -99,33 +117,63 @@
           <i class="fa-regular fa-heart"></i><span>Suka</span>
         </div>
       </a>
-      @guest()
-      <a href="/login">
+      <a href="/">
         <div class="nav-mobile-button">
           <i class="fa-regular fa-user"></i><span>Login</span>
         </div>
       </a>
-      @endguest
-      @auth()
-      <a href="/dashboard">
-        <div class="nav-mobile-button">
-          <img src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" class="w-6 h-6 object-cover rounded-full">
-          {{-- <i class="fa-regular fa-user"></i> --}}
-          <span>Profile</span>
-        </div>
-      </a>
-      @endauth
     </div>
 
-    {{ $slot ?? '' }}
-    @yield('content')  
+    <!-- Category -->
+    <section class="category">
+        <div class="category-list">
+          <a href="/" class="category-item">
+            <i class="fa-solid fa-fire"></i>
+            <span>Populer</span>
+          </a>
+          @foreach ($kategoris as $kategori)
+            <a href="{{ route('kategori', $kategori->slug) }}" class="category-item {{ $isKategori->id == $kategori->id ? "active" : "" }}">
+              <span class="font-medium">{{ $kategori->nama_kategori }}</span>
+            </a>
+          @endforeach
+        </div>
+      </section>
+
+    <!-- Wisata -->
+    <section class="wisata">
+        <div class="wisata-list">
+          @php $incrementTravel = 0 @endphp
+          @forelse ($travels as $travel)
+            @if($travel->tikets->count())
+              <a href="{{ route('detail', $travel->slug) }}" class="wisata-item">
+                @if($travel->galeris->count())
+                  <div class="thumbnail">
+                    <img src="{{ Storage::url($travel->galeris->first()->foto) }}" />
+                  </div>
+                @else
+                  <div class="w-full aspect-square rounded-xl bg-gray-300 flex flex-col align-middle justify-center">
+                    <i class="fa-regular fa-image text-center text-gray-500 text-9xl"></i>
+                    <h3 class="text-gray-500 text-center">Galeri Belum Tersedia</h3>
+                  </div>
+                @endif
+                <div class="name">{{ $travel->nama_travel }}</div>
+                <div class="address">{{ $travel->regencies->name }}, {{ $travel->provinces->name }}</div>
+                <div class="price">Mulai dari Rp {{ $travel->tikets->min('harga') }} <span>/tiket</span></div>
+              </a>
+            @else
+            @endif
+          @empty
+            <h1 class="text-center w-full text-gray-700">Belum ada data travel</h1>
+          @endforelse
+        </div>
+      </section>
 
     <footer>
       <div class="main-footer">
         <div class="get-footer">
           <div class="text">
-            <h1 class="text-3xl font-medium leading-loose">Ready to get started?</h1>
-            <h1 class="text-3xl font-medium leading-loose">Talk to us today</h1>
+            <h1>Ready to get started?</h1>
+            <h1>Talk to us today</h1>
           </div>
           <a href="/">
             <div class="button-footer">Get started</div>
@@ -164,7 +212,18 @@
       </div>
     </footer>
 
-    @include('includes.home.script')
-
+    <script>
+      const navElement = document.getElementById("nav");
+      function onScroll() {
+        if (
+          document.body.scrollTop > 20 ||
+          document.documentElement.scrollTop > 20
+        ) {
+          navElement.classList.add("onscroll");
+        } else {
+          navElement.classList.remove("onscroll");
+        }
+      }
+    </script>
   </body>
-  </html>
+</html>

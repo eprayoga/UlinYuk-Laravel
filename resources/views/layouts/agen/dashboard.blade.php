@@ -31,6 +31,8 @@
     ></script>
     <script src="{{ asset("/js/charts-lines.js")}}" defer></script>
     <script src="{{ asset("./assets/js/charts-pie.js")}}" defer></script>
+
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
   </head>
   <body>
 
@@ -227,7 +229,7 @@
             <form method="POST" action="{{ route('logout') }}" x-data>
                 @csrf
                 <button type="submit"
-                  class="flex text-center items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#6D67E4] border border-transparent rounded-lg active:bg-[#6D67E4] hover:bg-purple-600 focus:outline-none focus:shadow-outline-purple"
+                  class="flex text-center items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-[#6D67E4] border border-transparent rounded-lg active:bg-[#6D67E4] hover:bg-purple-600 focus:outline-none focus:shadow-outline-purple btn-logout"
                 >
                   Logout
                 </button>
@@ -615,8 +617,7 @@
                         <form method="POST" action="{{ route('logout') }}" x-data>
                             @csrf
                             <button type="submit"
-                              class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200"
-                              href="#"
+                              class="inline-flex items-center w-full px-2 py-1 text-sm font-semibold transition-colors duration-150 rounded-md hover:bg-gray-100 hover:text-gray-800 dark:hover:bg-gray-800 dark:hover:text-gray-200 btn-logout"
                             >
                               <svg
                                 class="w-4 h-4 mr-3"
@@ -655,5 +656,24 @@
     @stack('addon-script')
     @stack('modals')
     
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+    <script type="text/javascript">
+          $('.btn-logout').click(function(event) {
+              var form =  $(this).closest("form");
+              var name = $(this).data("name");
+              event.preventDefault();
+              swal({
+                  title: `Apa yakin anda ingin Logout?`,
+                  icon: "warning",
+                  buttons: true,
+                  dangerMode: true,
+              })
+              .then((willDelete) => {
+                if (willDelete) {
+                  form.submit();
+                }
+              });
+          });
+    </script>
   </body>
 </html>

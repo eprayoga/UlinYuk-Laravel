@@ -33,7 +33,7 @@ class AgenTiketTravel extends Component
 
         Tiket::create($data);
 
-        return redirect()->route('agen.tiket.travel');
+        return redirect()->route('agen.tiket.travel')->with('toast_success', 'Sukses Menambah Tiket Travel');
     }
 
     public function edit($id)
@@ -51,7 +51,7 @@ class AgenTiketTravel extends Component
         $item = Tiket::findOrFail($id);
         $item->update($data);
 
-        return redirect()->route('agen.tiket.travel');
+        return redirect()->route('agen.tiket.travel')->with('toast_success', 'Sukses Mengubah Tiket Travel');
     }
 
     public function destroy($id)
@@ -59,6 +59,6 @@ class AgenTiketTravel extends Component
         $item = Tiket::findOrFail($id);
         $item->delete();
 
-        return redirect()->route('agen.tiket.travel');
+        return redirect()->route('agen.tiket.travel')->with('toast_success', 'Sukses Mengubah Tiket Travel');
     }
 }

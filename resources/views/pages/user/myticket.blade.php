@@ -64,22 +64,22 @@
           <div class="flex flex-col gap-4 w-full">
           @forelse ($allTickets as $ticket)
           @if ($ticket->status_tiket == "belum digunakan")
-            <div class="flex justify-between rounded-lg bg-white shadow-lg w-full cursor-pointer hover:scale-105 ease-in duration-300">
-              <div class="flex flex-col md:flex-row md:max-w-xl"></div>
-              <img class="w-60 h-40 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ Storage::url($ticket->travel->galeris->first()->foto) }}" alt="" />
-              <div class="p-6 flex flex-col justify-start w-full">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $ticket->travel->nama_travel }}</h5>
-                <p class="text-gray-700 text-base mb-4">
-                  {{ $ticket->tiket->nama_tiket }} <span class="font-light">x{{ $ticket->jumlah_tiket }}</span>
-                </p>
-                <p class="text-gray-600 text-xs">Tanggal Kunjungan : {{ $ticket->tanggal_kunjungan }}</p>
-              </div>
-              @if ($ticket->status_tiket == "belum digunakan")
-                <div class="m-6 py-1 px-2 bg-[#6ABAA4] rounded-lg h-min w-max text-xs whitespace-nowrap text-white">Belum Digunakan</div>
-              @else
-                <div class="m-6 py-1 px-2 bg-[#EE0933] rounded-lg h-min w-max text-xs whitespace-nowrap text-white">Sudah Digunakan</div>
-              @endif
+          <a href="{{ route('my-ticket.detail', $ticket->id) }}" class="flex justify-between rounded-lg bg-white shadow-lg w-full cursor-pointer hover:scale-105 ease-in duration-300">
+            <div class="flex flex-col md:flex-row md:max-w-xl"></div>
+            <img class="w-60 h-40 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ Storage::url($ticket->travel->galeris->first()->foto) }}" alt="" />
+            <div class="p-6 flex flex-col justify-start w-full">
+              <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $ticket->travel->nama_travel }}</h5>
+              <p class="text-gray-700 text-base mb-4">
+                {{ $ticket->tiket->nama_tiket }} <span class="font-light">x{{ $ticket->jumlah_tiket }}</span>
+              </p>
+              <p class="text-gray-600 text-xs">Tanggal Kunjungan : {{ $ticket->tanggal_kunjungan }}</p>
             </div>
+            @if ($ticket->status_tiket == "belum digunakan")
+              <div class="m-6 py-1 px-2 bg-[#6ABAA4] rounded-lg h-min w-max text-xs whitespace-nowrap text-white">Belum Digunakan</div>
+            @else
+              <div class="m-6 py-1 px-2 bg-[#EE0933] rounded-lg h-min w-max text-xs whitespace-nowrap text-white">Sudah Digunakan</div>
+            @endif
+          </a>
           @endif
           
           @empty
@@ -97,22 +97,22 @@
           <div class="flex flex-col gap-4 w-full">
           @forelse ($allTickets as $ticket)
           @if ($ticket->status_tiket == "digunakan")
-            <div class="flex justify-between rounded-lg bg-white shadow-lg w-full cursor-pointer hover:scale-105 ease-in duration-300">
-              <div class="flex flex-col md:flex-row md:max-w-xl"></div>
-              <img class="w-60 h-40 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ Storage::url($ticket->travel->galeris->first()->foto) }}" alt="" />
-              <div class="p-6 flex flex-col justify-start w-full">
-                <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $ticket->travel->nama_travel }}</h5>
-                <p class="text-gray-700 text-base mb-4">
-                  {{ $ticket->tiket->nama_tiket }} <span class="font-light">x{{ $ticket->jumlah_tiket }}</span>
-                </p>
-                <p class="text-gray-600 text-xs">Tanggal Kunjungan : {{ $ticket->tanggal_kunjungan }}</p>
-              </div>
-              @if ($ticket->status_tiket == "belum digunakan")
-                <div class="m-6 py-1 px-2 bg-[#6ABAA4] rounded-lg h-min w-max text-xs whitespace-nowrap text-white">Belum Digunakan</div>
-              @else
-                <div class="m-6 py-1 px-2 bg-[#EE0933] rounded-lg h-min w-max text-xs whitespace-nowrap text-white">Sudah Digunakan</div>
-              @endif
+          <a href="{{ route('my-ticket.detail', $ticket->id) }}" class="flex justify-between rounded-lg bg-white shadow-lg w-full cursor-pointer hover:scale-105 ease-in duration-300">
+            <div class="flex flex-col md:flex-row md:max-w-xl"></div>
+            <img class="w-60 h-40 object-cover rounded-t-lg md:rounded-none md:rounded-l-lg" src="{{ Storage::url($ticket->travel->galeris->first()->foto) }}" alt="" />
+            <div class="p-6 flex flex-col justify-start w-full">
+              <h5 class="text-gray-900 text-xl font-medium mb-2">{{ $ticket->travel->nama_travel }}</h5>
+              <p class="text-gray-700 text-base mb-4">
+                {{ $ticket->tiket->nama_tiket }} <span class="font-light">x{{ $ticket->jumlah_tiket }}</span>
+              </p>
+              <p class="text-gray-600 text-xs">Tanggal Kunjungan : {{ $ticket->tanggal_kunjungan }}</p>
             </div>
+            @if ($ticket->status_tiket == "belum digunakan")
+              <div class="m-6 py-1 px-2 bg-[#6ABAA4] rounded-lg h-min w-max text-xs whitespace-nowrap text-white">Belum Digunakan</div>
+            @else
+              <div class="m-6 py-1 px-2 bg-[#EE0933] rounded-lg h-min w-max text-xs whitespace-nowrap text-white">Sudah Digunakan</div>
+            @endif
+          </a>
           @endif
           
           @empty

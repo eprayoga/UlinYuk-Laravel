@@ -60,7 +60,8 @@
                     </div>
                 </a>
                 <form action="{{ route('agen.tiket.travel.delete', $tiket->id) }}" method="post">
-                    <button type="submit" class="w-4 mr-2 transform hover:text-red-500 hover:scale-110 cursor-pointer">
+                    <input name="_method" type="hidden" value="DELETE">
+                    <button type="submit" class="w-4 mr-2 transform hover:text-red-500 hover:scale-110 cursor-pointer btn-confirm" data-toggle="tooltip" title='Delete'>
                         {{ csrf_field() }}
                         {{ method_field('delete') }}
                         <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -82,3 +83,26 @@
     </div>
   </div>
 </div>
+
+@push('addon-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+     $('.btn-confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Apakah anda ingin menghapus data tiket ini?`,
+              text: "Jika kamu menghapus ini, tiket ini akan terhapus permanen.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+</script>
+@endpush

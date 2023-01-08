@@ -31,7 +31,7 @@
                                 <img alt="gallery" class="block object-cover object-center w-full h-full rounded-lg" src="{{ Storage::url($galeri->foto) }}">
                               </div>
                               <form action="{{ route('agen.galeri.travel.delete', $galeri->id) }}" method="post" class="absolute top-0 right-0">
-                                <button type="submit" class=" bg-red-500 text-white py-2 px-2 rounded-xl font-medium shadow">
+                                <button type="submit" class=" bg-red-500 text-white py-2 px-2 rounded-xl font-medium shadow btn-confirm">
                                     {{ csrf_field() }}
                                     {{ method_field('delete') }}
                                     Hapus Foto
@@ -51,3 +51,26 @@
 </div>
 
 @endsection
+
+@push('addon-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.0/sweetalert.min.js"></script>
+<script type="text/javascript">
+     $('.btn-confirm').click(function(event) {
+          var form =  $(this).closest("form");
+          var name = $(this).data("name");
+          event.preventDefault();
+          swal({
+              title: `Apakah anda ingin menghapus Foto ini?`,
+              text: "Jika kamu menghapus ini, Foto ini akan terhapus permanen.",
+              icon: "warning",
+              buttons: true,
+              dangerMode: true,
+          })
+          .then((willDelete) => {
+            if (willDelete) {
+              form.submit();
+            }
+          });
+      });
+</script>
+@endpush
