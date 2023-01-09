@@ -85,7 +85,7 @@
                 <div class="grid">
                 <div class="form-input">
                     <label for="no_hp">No Handphone </label>
-                    <input type="tel" name="nomor_pengunjung" id="no_hp" />
+                    <input type="tel" name="nomor_pengunjung" id="no_hp" value="{{ Auth::user()->phone_number }}"  />
                 </div>
                 <div class="form-input">
                     <label for="email">Email </label>

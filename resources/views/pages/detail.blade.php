@@ -221,7 +221,7 @@
           <hr />
           <div class="row">
             <div class="price">Rp {{ $tiket->harga }}</div>
-            <button class="btn-pilih">Pilih</button>
+            {{-- <button class="btn-pilih">Pilih</button> --}}
           </div>
           <div class="dropdown">
             <hr />
@@ -267,8 +267,8 @@
       <div class="main-footer">
         <div class="get-footer">
           <div class="text">
-            <h1>Ready to get started?</h1>
-            <h1>Talk to us today</h1>
+            <h1 class="text-3xl font-medium leading-loose">Ready to get started?</h1>
+            <h1 class="text-3xl font-medium leading-loose">Talk to us today</h1>
           </div>
           <a href="/">
             <div class="button-footer">Get started</div>
@@ -278,7 +278,7 @@
         <div class="footer-brand">
           <div class="brand">
             <div class="logo">
-              <img src="assets/icon/logo.svg" alt="" /> <span>UlinYuk</span>
+              <img src="{{ asset('assets/icon/logo.svg')}}" alt="" /> <span>UlinYuk</span>
             </div>
             <h4>The heart of travel</h4>
           </div>
